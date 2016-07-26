@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Angelo e Demone</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script type="text/javascript">
+      $(function()
+      {
+        
+        for (var i=0; i < 6; i++)
+        {
+          for (j=0; j < 6; j++)
+          {
+            var cube = $("<div class='cube'></div>");
+            $("#cont").append(cube);
+            $(cube).css("left",(i*100)+"px");
+            $(cube).css("top",(j*100)+"px");
+            var id = j+""+i+"";
+            //http://photovide.com/wp-content/uploads/2013/01/Portrait-Photography-02.jpg
+            var fronturl = 'https://cdn.tutsplus.com/photo/uploads/legacy/526_selfportraits/selfportrait-47.jpg';
+            var backurl = 'http://www.studiopopcorn.it/wp-content/uploads/2015/06/sebastiao_salgado_ritratto1.jpg';
+            var front = $('<figure class="front"></figure>');
+            var back = $('<figure class="back"></figure>');
+            $(front).css('background-image','url(https://cdn.tutsplus.com/photo/uploads/legacy/526_selfportraits/selfportrait-47.jpg)');
+            $(front).css('background-position',(i*-100)+"px "+(j*-100)+"px");
+            $(back).css('background-image','url(http://www.studiopopcorn.it/wp-content/uploads/2015/06/sebastiao_salgado_ritratto1.jpg)');
+            $(back).css('background-position',(i*100+100)+"px "+(j*-100)+"px");
+            //$(back).css('transform', 'scaleX(-1)');
+            //$(back).css();
+            //var html = '<figure class="front" id="front'+id+'"></figure><figure class="back" id="back'+id+'"></figure>';
+            var html = '<figure class="right"></figure><figure class="left"></figure><figure class="top"></figure><figure class="bottom"></figure>'
+            $(cube).append(front);
+            $(cube).append(back);
+            $(cube).append(html);
+          }  
+        }
+        
+        
+        $(".cube").click(function()
+        {
+          $(this).toggleClass("rotated");
+        });
+      });
+    </script>
+    <style>
+       .container 
+       {
+        width: 600px;
+        height: 600px;
+        position: relative;
+        perspective-origin: 50% 50%;
+        perspective: 1000px;
+        top:10px;
+        left: 10px;
+        transform-style: preserve-3d;
+        /*transform: scale(0.5, 0.5);*/
+      }
+      
+      .cube 
+      {
+        width: 100px;
+        height: 100px;
+        position: absolute;
+        transform-style: preserve-3d;
+        -webkit-transition: all 2s ease-out;
+        transform: translateZ(10px);
+        transform-origin: 50% 50% 50px;
+        
+      }
+      
+      .cube figure 
+      {
+        margin: 0;
+        width: 100px;
+        height: 100px;
+        display: block;
+        position: absolute;
+        text-align: center;
+      }
+      
+      .cube .front  { background-color:pink; transform: translateZ( 50px ); }
+      .cube .back   { background-color:pink;transform:  translateZ( 40px ) ; }
+      .cube .right  { background-color:gray; width:10px; transform: rotateY( 90deg ) translateZ( 95px ) translateX(-45px) }
+      .cube .left   { background-color:gray; width:10px; transform: rotateY( -90deg ) translateZ( 5px ) translateX(45px);}
+      .cube .top    { background-color:green; height:10px; transform: rotateX( 90deg ) translateZ( 5px ) translateY(45px)}
+      .cube .bottom { background-color:green; height:10px; transform: rotateX( -90deg ) translateZ( 95px ) translateY(-45px); }
+      .rotated {transform: rotateY(   180deg );}
+      
+
+    </style>
+  </head>
+
+  <body>
+    
+    <section class="container" id="cont">
+
+  </section>
+    
+  </body>
+</html>
